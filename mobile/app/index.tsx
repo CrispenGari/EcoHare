@@ -32,7 +32,7 @@ const Page = () => {
         });
       } else {
         router.replace({
-          pathname: "/(auth)/landing",
+          pathname: "/(tabs)/home",
         });
       }
     }, 3000);

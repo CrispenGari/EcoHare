@@ -10,6 +10,7 @@ import React from "react";
 import { LogBox, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Fonts } from "@/src/constants";
+import ReactQueryProvider from "@/src/providers/ReactQueryProvider";
 
 LogBox.ignoreLogs;
 LogBox.ignoreAllLogs();
@@ -48,11 +49,13 @@ const Layout = () => {
   return (
     <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <StatusBar style="light" />
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <BottomSheetModalProvider>
-          <RootLayout />
-        </BottomSheetModalProvider>
-      </GestureHandlerRootView>
+      <ReactQueryProvider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <BottomSheetModalProvider>
+            <RootLayout />
+          </BottomSheetModalProvider>
+        </GestureHandlerRootView>
+      </ReactQueryProvider>
     </View>
   );
 };
@@ -64,7 +67,7 @@ const RootLayout = () => {
     <Stack initialRouteName="index">
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-      <Stack.Screen name="(main)" options={{ headerShown: false }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
     </Stack>
   );
 };

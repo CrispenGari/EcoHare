@@ -1,5 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StateStorage } from "zustand/middleware";
+import * as SecureStore from "expo-secure-store";
+import { STORAGE_NAME } from "../constants";
 
 export const zustandStorage: StateStorage = {
   getItem: async (key) => {
@@ -26,4 +28,12 @@ export const zustandStorage: StateStorage = {
       return false;
     }
   },
+};
+
+export const storeJWT = async (jwt: string) => {
+  await SecureStore.setItemAsync(STORAGE_NAME.JWT, jwt);
+};
+export const retrieveJWT = async () => {
+  const token = await SecureStore.getItemAsync(STORAGE_NAME.JWT);
+  return token;
 };

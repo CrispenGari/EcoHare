@@ -6,7 +6,7 @@ export const COLORS = {
   black: "#000000",
   white: "#ffffff",
   red: "#FF0000",
-  gray: "#E8EDF2",
+  gray: "#57595B",
   transparent: "transparent",
 };
 
@@ -29,6 +29,7 @@ export const IMAGES = {
 
 export const STORAGE_NAME = {
   SETTINGS: "ecohare:settings",
+  JWT: "ecohare:jwt",
 };
 
 export const relativeTimeObject = {
