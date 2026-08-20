@@ -1,4 +1,6 @@
 import enum
+import hashlib
+import secrets
 import uuid
 from datetime import datetime, timezone
 
@@ -43,3 +45,17 @@ def is_valid_password(password: str) -> bool:
     if not isinstance(password, str):
         return False
     return PASSWORD_PATTERN.fullmatch(password) is not None
+
+
+def create_public_reference() -> str:
+    year = datetime.now(timezone.utc).year
+    suffix = uuid.uuid4().hex[:10].upper()
+    return f"ECO-{year}-{suffix}"
+
+
+def create_tracking_token() -> tuple[str, str]:
+    raw_token = secrets.token_urlsafe(32)
+    token_hash = hashlib.sha256(
+        raw_token.encode("utf-8")
+    ).hexdigest()
+    return raw_token, token_hash

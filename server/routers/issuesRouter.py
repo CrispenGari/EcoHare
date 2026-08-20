@@ -10,6 +10,20 @@ def new(
     image: Annotated[bytes, File()],
     explain: Annotated[bool, Form()] = False
 ):
+
+    raw_token, token_hash = create_tracking_token()
+
+    report = Report(
+        public_reference=create_public_reference(),
+        tracking_token_hash=token_hash,
+        category=IssueType.DUMPED_WASTE,
+        latitude=-32.7861234,
+        longitude=26.8465678,
+    )
+
+    db.add(report)
+    db.commit()
+    db.refresh(report)
     start = time.monotonic()
     try:
      
@@ -18,7 +32,6 @@ def new(
                 "time": time.monotonic() - start,
                 "ok": True,
                 "status": "ok",
-              
                 "id": str(uuid4())
                 
             },

@@ -123,6 +123,11 @@ class Report(Base):
         nullable=True,
     )
 
+    imageURL: Mapped[str | None] = mapped_column(
+        Text,
+        nullable=False,
+    )
+
     latitude: Mapped[Decimal] = mapped_column(
         DECIMAL(10, 7),
         nullable=False,
